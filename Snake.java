@@ -56,26 +56,25 @@ public class Snake {
     }
 
     public void move(Apple apple) {
-        GameObject newHead = createNewHead(); //Создаю новую голову
-
+        GameObject newHead = createNewHead(); //Creating a new head
         if (checkCollision(newHead)) {
-            isAlive = false; // Если найдено совпадение координат, устанавливаем флаг isAlive змеи в false
+            isAlive = false; //If a coordinate match is found, we set the 'isAlive' flag of the snake to false.
             return;
         }
-        // Проверка на нахождение координат новой головы в пределах игрового поля
+        //Checking if the coordinates of the new head are within the bounds of the game field.
         if (newHead.x >= SnakeGame.WIDTH || newHead.x < 0 || newHead.y >= SnakeGame.HEIGHT || newHead.y < 0) {
-            isAlive = false; // Установка флага isAlive в false, если координаты выходят за пределы игрового поля
+            isAlive = false; //Setting the 'isAlive' flag to false if the coordinates go beyond the boundaries of the game field.
             return;
         }
-        // Проверка на совпадение координат новой головы с координатами яблока
+        // Checking for a match between the coordinates of the new head and the coordinates of the apple.
         if (newHead.x == apple.x && newHead.y == apple.y) {
             apple.isAlive = false;
-        }// Установка флага isAlive яблока в false, если координаты совпадают
+        }//Setting the 'isAlive' flag of the apple to false if the coordinates match.
         else {
             removeTail(); // Удаление хвоста
         }
 
-        snakeParts.add(0, newHead); // Добавление новой головы в начало списка
+        snakeParts.add(0, newHead); // Adding a new head to the beginning of the list.
 
 
     }
